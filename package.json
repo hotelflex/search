@@ -1,0 +1,26 @@
+{
+  "name": "@hotelflex/search",
+  "version": "1.0.0",
+  "main": "src",
+  "scripts": {
+    "precommit": "pretty-quick --staged"
+  },
+  "dependencies": {
+    "@hotelflex/id": "git+https://github.com/hotelflex/id.git#1.1.0",
+    "lodash": "^4.17.5",
+    "moment": "^2.22.2",
+    "objection": "^1.1.10",
+    "knex": "^0.14.6",
+    "pg": "^7.4.3"
+  },
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "prettier": "1.13.7",
+    "pretty-quick": "^1.6.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  }
+}
