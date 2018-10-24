@@ -47,7 +47,7 @@ function applyPropExpr(prop, expr, builder) {
 
   for (let lhs in expr) {
     const opHandler = operators[lhs]
-    const rhs = epxr[lhs]
+    const rhs = expr[lhs]
     if (!opHandler) continue
 
     opHandler(prop, rhs, builder)
