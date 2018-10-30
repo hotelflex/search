@@ -7,7 +7,7 @@ const arrayize = function(objOrArr) {
 
 const operators = {
   $eq: (prop, operand, builder) => builder.where(prop, operand),
-  $like: (prop, operand, builder) => builder.where(property, 'like', operand),
+  $like: (prop, operand, builder) => builder.where(prop, 'like', operand),
   $lt: (prop, operand, builder) => builder.where(prop, '<', operand),
   $gt: (prop, operand, builder) => builder.where(prop, '>', operand),
   $lte: (prop, operand, builder) => builder.where(prop, '<=', operand),
@@ -19,7 +19,7 @@ const operators = {
 }
 
 function iterator(prop, expr, builder, isOr) {
-  builder[isOr ? 'orWhere' : 'where']((subQB) => {
+  builder[isOr ? 'orWhere' : 'where'](subQB => {
     if (typeof expr !== 'object') {
       const opHandler = operators['$eq']
       opHandler(prop, expr, subQB)
@@ -29,7 +29,7 @@ function iterator(prop, expr, builder, isOr) {
       const rhs = expr[lhs]
 
       if (lhs === '$or' || lhs === '$and') {
-        subQB.where((innerBuilder) => {
+        subQB.where(innerBuilder => {
           for (let subExpr of arrayize(rhs)) {
             iterator(prop, subExpr, innerBuilder, lhs === '$or')
           }
@@ -48,6 +48,7 @@ function applyPropExpr(prop, expr, builder) {
   for (let lhs in expr) {
     const opHandler = operators[lhs]
     const rhs = expr[lhs]
+
     if (!opHandler) continue
 
     opHandler(prop, rhs, builder)
