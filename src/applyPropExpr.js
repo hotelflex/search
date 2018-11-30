@@ -12,6 +12,11 @@ const operators = {
   $gt: (prop, operand, builder) => builder.where(prop, '>', operand),
   $lte: (prop, operand, builder) => builder.where(prop, '<=', operand),
   $gte: (prop, operand, builder) => builder.where(prop, '>=', operand),
+  $ne: (prop, operand, builder) => builder.where(prop, '<>', operand),
+  $nn: (prop, _, builder) => builder.whereNotNull(prop),
+  $null: (prop, _, builder) => builder.whereNull(prop),
+  $ex: (prop, _, builder) => builder.whereExists(prop),
+  $nex: (prop, _, builder) => builder.whereNotExists(prop),
   $or: (prop, items, builder) =>
     builder.where(subQB => iterator(prop, { $or: items }, subQB, true)),
   $and: (prop, items, builder) =>
