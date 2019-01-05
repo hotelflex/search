@@ -4,7 +4,9 @@ const order = require('./order')
 
 class SearchBuilder {
   constructor(model, opts={}) {
-    this.builder = model.query()
+    this.builder = model
+      .query()
+      .skipUndefined()
     this.parseOpts(opts)
   }
 
