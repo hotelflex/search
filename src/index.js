@@ -2,6 +2,7 @@ const where = require('./where')
 const limit = require('./limit')
 const order = require('./order')
 
+
 class SearchBuilder {
   constructor(model, opts={}) {
     this.builder = model
